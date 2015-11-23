@@ -1,0 +1,3 @@
+rootProject.name = 'RnListView'
+
+include ':app'
