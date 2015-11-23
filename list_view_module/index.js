@@ -11,6 +11,7 @@ var {
   ToastAndroid,
 } = React
 
+// 样式
 var styles = require('./style');
 
 // 图片
@@ -41,14 +42,19 @@ var NAMES = [
   'Yuri'
 ];
 
+// Card视图
 var Card = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
-    return false;
+  showToast: function(num: i) {
+    ToastAndroid.show(NAMES[num].toString(), ToastAndroid.SHORT);
   },
 
+  // 左右留空, 中间匹配
   render: function() {
     return (
-      <TouchableOpacity style={styles.button} onPress={() => ToastAndroid.show(NAMES[this.props.num].toString(), ToastAndroid.SHORT)}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => this.showToast(this.props.num)}
+      >
         <View style={styles.blank}/>
         <Image
           style={styles.image}
@@ -60,7 +66,8 @@ var Card = React.createClass({
   }
 });
 
-var createCardRow = (img, i) => <Card img={img} key={i} num={i}/>;
+// 批量创建
+var createCardRow = (img, i) => <Card key={i} img={img} num={i}/>;
 
 var ListViewModule = React.createClass({
   render: function() {
@@ -70,7 +77,6 @@ var ListViewModule = React.createClass({
         {IMAGES.map(createCardRow)}
       </ScrollView>
     );
-
     return verticalScrollView;
   }
 });

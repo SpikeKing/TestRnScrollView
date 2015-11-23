@@ -10,6 +10,5 @@ var {
 } = React;
 
 var RnListView = require('./list_view_module/index');
-// var RnListView = require('./test');
 
 AppRegistry.registerComponent('RnListView', () => RnListView);
